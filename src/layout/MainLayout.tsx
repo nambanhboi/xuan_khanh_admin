@@ -14,15 +14,33 @@ import { jwtDecode, JwtPayload } from "jwt-decode";
 const { Content, Footer, Sider } = Layout;
 
 const siderStyle: React.CSSProperties = {
-  overflow: "auto",
-  height: "100vh",
-  position: "fixed",
-  insetInlineStart: 0,
-  top: 0,
-  bottom: 0,
-  scrollbarWidth: "thin",
-  scrollbarGutter: "stable",
-  backgroundColor: "var(--color-primary-9)"
+  textAlign: "center",
+  lineHeight: "120px",
+  color: "#fff",
+  minWidth: "12%",
+  minHeight: "85vh",
+  backgroundColor: "var(--color-primary-1) !important"
+};
+
+const contentStyle: React.CSSProperties = {
+  minHeight: 120,
+  lineHeight: "120px",
+  color: "#fff",
+  padding: 24,
+};
+
+const footerStyle: React.CSSProperties = {
+  textAlign: "center",
+  backgroundColor: "#fff",
+  position: 'fixed',
+  bottom: '0',
+  width: '100%',
+  boxShadow: "0 0 2px #0000003d, 0 -2px 12px #00000014"  
+};
+
+const layoutStyle: React.CSSProperties = {
+  borderRadius: 8,
+  overflow: "hidden", // Ensure rounded corners apply to the entire layout
 };
 interface CustomJwtPayload extends JwtPayload {
   dvvc_id?: string; // hoặc number nếu `dvvc_id` là số
@@ -102,41 +120,26 @@ const MainLayout: React.FC<{children?: React.ReactNode, label?:string }> = ({
   
 
   return (
-    <Layout hasSider>
-      <Sider style={siderStyle}>
-        <div className="demo-logo-vertical" />
-        <Menu
-          theme="dark"
-          mode="inline"
-          style={{ backgroundColor: "var(--color-primary-9)" }}
-          defaultSelectedKeys={["1"]}
-          items={(auth?.dvvc_id === '' || auth?.dvvc_id === null) ? menuItem : menuItemVC}
-          onClick={handleChangeMenu}
-        />
-      </Sider>
-      <Layout style={{ marginInlineStart: 200 }}>
-        <HeaderLayout />
-        <GroupLabel label={label}/>
-        <Content style={{ margin: "24px 16px 0", overflow: "initial", minHeight: "80vh" }}>
-          <div
-            style={{
-              padding: 24,
-              background: "var(--color-primary-1)"
-            }}
-          >
-            {children}
-          </div>
+    <Layout style={layoutStyle}>
+      <HeaderLayout />
+      <Layout>
+        <Sider width="15%" style={siderStyle}>
+          <Menu
+            theme="light"
+            mode="inline"
+            style={{ backgroundColor: "var(--color-primary-1) !important" }} // Match Sider background
+            defaultSelectedKeys={["1"]}
+            items={menuItem}
+            onClick={handleChangeMenu}
+          />
+        </Sider>
+        <Content style={contentStyle}>
+          <div style={{ padding: 24 }}>{children}</div>
         </Content>
-        <Footer
-          style={{
-            textAlign: "end",
-            background: "var(--color-primary-1)",
-            borderTop: "1px solid var(--color-primary-2)"
-          }}
-        >
-          G-connect seller center ©{new Date().getFullYear()} Created by Vũ Vương Lâm
-        </Footer>
       </Layout>
+      <Footer style={footerStyle}>
+        ORCHARD ©{new Date().getFullYear()} Created by Dương Xuân Khánh
+      </Footer>
     </Layout>
   );
 };

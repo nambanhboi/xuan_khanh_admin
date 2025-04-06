@@ -1,7 +1,7 @@
 .right-header{
     float: right;
     display: flex;
-    padding: 0 32px;
+    padding: 10px 32px;
     
     .thong-bao,
     .nguoi-dung-avt{
@@ -19,4 +19,19 @@
 
 .ant-dropdown-menu{
     margin-top: 10px !important;
+}
+
+
+.header-layout {
+    position: relative;
+    box-shadow: 0 0 2px #0000003d, 0 2px 12px #00000014;
+    height: 90px !important;
+    z-index: 100;
+}
+
+.logo {
+    width: 27%;
+    margin-left: 50px;
+    padding-top: 14px;
+    cursor: pointer;
 }
