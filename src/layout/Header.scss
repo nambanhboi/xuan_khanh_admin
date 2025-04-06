@@ -1,0 +1,22 @@
+.right-header{
+    float: right;
+    display: flex;
+    padding: 0 32px;
+    
+    .thong-bao,
+    .nguoi-dung-avt{
+        margin: 0 16px;
+        cursor: pointer;
+    }
+
+    .ant-space-item{
+        color: black;
+    }
+}
+.left-header{
+    float: left;
+}
+
+.ant-dropdown-menu{
+    margin-top: 10px !important;
+}

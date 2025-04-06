@@ -1,0 +1,131 @@
+@import "styles/themes.scss";
+@import "styles/variables.scss";
+*{
+    font-size: 16px;
+}
+.ant-menu-item,
+.ant-menu{
+    background-color: var(--color-primary-9) !important;
+}
+
+.ant-tabs-nav-wrap{
+    border-bottom: 1px solid  var(--color-primary-6) !important;
+}
+
+.ant-tabs-card .ant-tabs-tab {
+    margin-right: 16px !important; /* Điều chỉnh khoảng cách giữa các tab */
+    border-color: var(--color-primary-6) !important;
+
+  }
+
+  /* Khi hover vào tab */
+.ant-tabs-tab:hover {
+    color: var(--color-primary-9) !important;
+  }
+  
+  /* Khi tab đang active */
+  .ant-tabs-tab-active .ant-tabs-tab-btn {
+    color: var(--color-primary-9) !important;
+  } 
+
+.ant-menu-item:hover,
+.ant-menu-submenu-title:hover{
+    background-color: var(--color-primary-10) !important;
+}
+
+.ant-menu-submenu-selected{
+    .ant-menu-submenu-title{
+        color: white !important;
+    }
+}
+
+.ant-btn-color-primary{
+    background-color: var(--color-primary-7) !important;
+}
+
+.ant-layout{
+    margin-inline-start: 130px !important;
+}
+
+.ant-layout-sider{
+    max-width: 255px !important;
+    width: 255px !important;
+}
+
+.ant-divider-horizontal{
+    margin: 16px 0 !important;
+}
+
+.ant-layout-content{
+    margin: 0 16px !important;
+}
+
+.ant-form-item-control-input-content,
+.form-item-custom 
+{
+    margin-bottom: 0 !important;
+}
+
+
+.ant-picker ,
+.ant-picker-outlined{
+    border: 1px solid #9CA3AF !important;
+}
+
+.ant-typography{
+    font-size: 16px !important;
+}
+
+.status-field-1{
+    border: 1px solid;
+    text-align: center;
+    border-radius: 5px;
+    background-color:#FAFAFA;
+    border-color: #9CA3AF;
+    padding: 2px 10px;
+    width: 100%;
+}
+
+.status-field-2{
+    border: 1px solid;
+    padding: 2px 10px;
+    text-align: center;
+    border-radius: 5px;
+    background-color:#ffd8e0bb;
+    border-color: #D7002E;
+    color: #D7002E;
+    width: 100%;
+}
+
+.status-field-3{
+    padding: 2px 10px;
+    border: 1px solid;
+    text-align: center;
+    border-radius: 5px;
+    background-color:#E5FCF2;
+    border-color: #006339;
+    color: #006339;
+    width: 100%;
+}
+
+.status-field-4{
+    padding: 2px 10px;
+    border: 1px solid;
+    text-align: center;
+    border-radius: 5px;
+    background-color:#e5e9fc;
+    border-color: #020063;
+    color: #020063;
+    width: 100%;
+}
+
+.status-field-5{
+    padding: 2px 10px;
+    border: 1px solid;
+    text-align: center;
+    border-radius: 5px;
+    background-color:#e5f9fc;
+    border-color: #005c63;
+    color: #005c63;
+    width: 100%;
+}

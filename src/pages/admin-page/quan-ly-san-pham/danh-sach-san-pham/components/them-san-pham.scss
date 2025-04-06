@@ -1,0 +1,51 @@
+.thong-tin-san-pham,
+.thong-tin-ban-hang{
+    .thong-tin-sp{
+        margin-bottom: 16px;
+    }
+    
+    .label-sp{
+        display: flex;
+        justify-content: end;
+        text-align: end;
+    }
+
+    .btn-delete{
+        padding: 7px;
+        margin: 0 5px;
+        border-radius: 5px;
+        cursor: pointer;
+        color: red;
+        background-color: rgb(255, 221, 221);
+    }
+
+    .btn-delete:hover{
+        color:white;
+        background-color: rgb(255, 124, 124);
+    }
+    .btn-delete:active{
+        color:white;
+        background-color: red;
+    }
+
+    .btn-add{
+        padding: 7px;
+        margin: 0 5px;
+        border-radius: 5px;
+        cursor: pointer;
+        color: rgb(0, 0, 0);
+        background-color: rgb(215, 255, 217);
+    }
+    .btn-add:hover{
+        color:white;
+        background-color: rgb(124, 255, 130);
+    }
+    .btn-add:active{
+        color:white;
+        background-color: green;
+    }
+
+    .hide{
+        display: none;
+    }
+}
