@@ -45,7 +45,7 @@ const HeaderLayout = () => {
       <div className="left-header" style={{ height:"100%" }}>
         <img
           src="/images/logo.jpg"
-          alt="G-connect Logo"
+          alt="DK Logo"
           style={{ height:"60%", marginTop:"10%", marginLeft:"30px" }}
         />
       </div>
@@ -65,7 +65,7 @@ const HeaderLayout = () => {
               <Space>
                 <Avatar icon={<UserOutlined />} />{" "}
                 {auth?.dvvc_id === "" || auth?.dvvc_id === null
-                  ? "Administrator"
+                  ? "DK Administrator"
                   : "Shipper"}
               </Space>
             </a>

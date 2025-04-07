@@ -34,13 +34,13 @@ type tuyChonPhanLoaiProps = {
   tuy_chon_phan_loai?: any;
 };
 type phanLoaiProps = {
-  ten_phan_loai?: "mau-sac" | "size";
+  ten_phan_loai?: "dung-tich" | "loai-nuoc-hoa";
   phan_loai?: tuyChonPhanLoaiProps[];
 };
 
 interface DataSourceItem {
-  mau_sac?: any;
-  kich_thuoc?: any;
+  dung_tich?: any;
+  loai_nuoc_hoa?: any;
   gia?: number;
   khuyen_mai?: number;
   so_luong?: number;
@@ -150,6 +150,7 @@ const SuaSanPham: React.FC = () => {
             </Col>
             <Col span={20}>
               <FormItemInput
+                disabled={true}
                 placeholder="Mã sản phẩm"
                 value={maSanPham}
                 onChange={(e: any) => setMaSanPham(e.target.value)}
@@ -230,7 +231,7 @@ const SuaSanPham: React.FC = () => {
   const [dataSource, setDataSource] = useState<DataSourceItem[]>([]);
   const [phan_loai, set_phan_loai] = useState<phanLoaiProps[]>([
     {
-      ten_phan_loai: "mau-sac",
+      ten_phan_loai: "dung-tich",
       phan_loai: [
         {
           key: 1,
@@ -242,16 +243,16 @@ const SuaSanPham: React.FC = () => {
 
   const columns = [
     ...phan_loai.map((item: any) => ({
-      title: item.ten_phan_loai === "mau-sac" ? "Màu sắc" : "Kích thước",
-      dataIndex: item.ten_phan_loai,
-      key: item.ten_phan_loai,
+      title: item.ten_phan_loai === "dung-tich" ? "Dung tích" : "Loại nước hoa",
+      dataIndex: item.ten_phan_loai === "dung-tich" ? "dung_tich" : "loai_nuoc_hoa",
+      key: item.ten_phan_loai === "dung-tich" ? "dung_tich" : "loai_nuoc_hoa",
       width: 250,
       render: (text: any, record: any, index: any) => ({
         children: text || record[item.ten_phan_loai],
         props: {
           rowSpan:
-            item.ten_phan_loai === "mau-sac"
-              ? getRowSpan(dataSource, index, "mau-sac")
+            item.ten_phan_loai === "dung-tich"
+              ? getRowSpan(dataSource, index, "dung-tich")
               : null,
         },
       }),
@@ -330,6 +331,7 @@ const SuaSanPham: React.FC = () => {
       render: (text: any, record: any) => (
         <>
           <FormItemInput
+            disabled={true}
             value={record.sku}
             onChange={(e: any) => {
               const updatedDataSource = dataSource.map((item, index) => {
@@ -367,22 +369,22 @@ const SuaSanPham: React.FC = () => {
         "warning",
         "Thông báo",
         `Phân loại "${
-          phan_loai[1].ten_phan_loai === "mau-sac" ? "Màu sắc" : "Kích thước"
+          phan_loai[1].ten_phan_loai === "dung-tich" ? "Dung tích" : "Loại nước hoa"
         }" đã tồn tại`
       );
       const updatedPhanLoai = [...phan_loai];
       updatedPhanLoai[1].ten_phan_loai =
-        updatedPhanLoai[0].ten_phan_loai === "mau-sac" ? "size" : "mau-sac";
+        updatedPhanLoai[0].ten_phan_loai === "dung-tich" ? "loai-nuoc-hoa" : "dung-tich";
       set_phan_loai(updatedPhanLoai);
     }
 
     var arr: DataSourceItem[] = [];
 
     const mauSac =
-      phan_loai.find((item: any) => item.ten_phan_loai === "mau-sac")
+      phan_loai.find((item: any) => item.ten_phan_loai === "dung-tich")
         ?.phan_loai || [];
     const kichThuoc =
-      phan_loai.find((item: any) => item.ten_phan_loai === "size")?.phan_loai ||
+      phan_loai.find((item: any) => item.ten_phan_loai === "loai-nuoc-hoa")?.phan_loai ||
       [];
 
     mauSac.forEach((mau: any) => {
@@ -390,14 +392,14 @@ const SuaSanPham: React.FC = () => {
         kichThuoc.forEach((size: any) => {
           const existingItem = dataSource.find(
             (item) =>
-              item["mau-sac"] === mau.tuy_chon_phan_loai &&
-              item.size === size.tuy_chon_phan_loai
+              item["dung-tich"] === mau.tuy_chon_phan_loai &&
+              item["loai-nuoc-hoa"] === size.tuy_chon_phan_loai
           );
 
           arr.push({
             key: existingItem?.key || `${Math.random()}`,
-            "mau-sac": mau.tuy_chon_phan_loai,
-            size: size.tuy_chon_phan_loai,
+            "dung-tich": mau.tuy_chon_phan_loai,
+            "loai-nuoc-hoa": size.tuy_chon_phan_loai,
             gia: existingItem?.gia || undefined,
             khuyen_mai: existingItem?.khuyen_mai || undefined,
             so_luong: existingItem?.so_luong || undefined,
@@ -406,12 +408,12 @@ const SuaSanPham: React.FC = () => {
         });
       } else {
         const existingItem = dataSource.find(
-          (item) => item["mau-sac"] === mau.tuy_chon_phan_loai
+          (item) => item["dung-tich"] === mau.tuy_chon_phan_loai
         );
 
         arr.push({
           key: existingItem?.key || `${Math.random()}`,
-          "mau-sac": mau.tuy_chon_phan_loai,
+          "dung-tich": mau.tuy_chon_phan_loai,
           khuyen_mai: existingItem?.khuyen_mai || undefined,
           gia: existingItem?.gia || undefined,
           so_luong: existingItem?.so_luong || undefined,
@@ -449,9 +451,9 @@ const SuaSanPham: React.FC = () => {
                         />
                       }
                       title={
-                        item.ten_phan_loai === "mau-sac"
-                          ? "Màu sắc"
-                          : "Kích thước"
+                        item.ten_phan_loai === "dung-tich"
+                          ? "Dung tích"
+                          : "Loại nước hoa"
                       }
                       style={{ margin: "8px 0" }}
                     >
@@ -461,7 +463,7 @@ const SuaSanPham: React.FC = () => {
                         value={item.ten_phan_loai}
                         allOptionLabel=""
                         defaultFirstOption={true}
-                        onChange={(val: "mau-sac" | "size") => {
+                        onChange={(val: "dung-tich" | "loai-nuoc-hoa") => {
                           const updatedPhanLoai = phan_loai.map(
                             (phanLoaiItem) =>
                               phanLoaiItem === item
@@ -472,12 +474,12 @@ const SuaSanPham: React.FC = () => {
                         }}
                         options={[
                           {
-                            label: "Màu sắc",
-                            value: "mau-sac",
+                            label: "Dung tích",
+                            value: "dung-tich",
                           },
                           {
-                            label: "Kích thước",
-                            value: "size",
+                            label: "Loại nước hoa",
+                            value: "loai-nuoc-hoa",
                           },
                         ]}
                       />
@@ -609,7 +611,7 @@ const SuaSanPham: React.FC = () => {
                     set_phan_loai([
                       ...phan_loai,
                       {
-                        ten_phan_loai: "mau-sac",
+                        ten_phan_loai: "dung-tich",
                         phan_loai: [
                           { key: Date.now(), tuy_chon_phan_loai: "" },
                         ],
@@ -709,8 +711,8 @@ const SuaSanPham: React.FC = () => {
         var dataSrc = dataBienThe.map((item: any, index: any) => {
           return {
             key: index,
-            "mau-sac": item.mau_sac,
-            size: item.size,
+            "dung-tich": item.dung_tich,
+            "loai-nuoc-hoa": item.loai_nuoc_hoa,
             khuyen_mai: item.khuyen_mai,
             gia: item.gia,
             so_luong: item.so_luong,
@@ -774,8 +776,8 @@ const SuaSanPham: React.FC = () => {
             ten_san_pham: tenSanPham || null,
             mo_ta: moTa || null,
             xuat_xu: xuatXu || null,
-            mau_sac: item["mau-sac"] || null,
-            size: item["size"] || null,
+            dung_tich: item["dung-tich"] || null,
+            loai_nuoc_hoa: item["loai-nuoc-hoa"] || null,
             gia: item.gia || null,
             khuyen_mai: item.khuyen_mai || null,
             so_luong: item.so_luong || null,

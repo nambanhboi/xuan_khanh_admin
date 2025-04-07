@@ -138,7 +138,7 @@ const MainLayout: React.FC<{children?: React.ReactNode, label?:string }> = ({
         </Content>
       </Layout>
       <Footer style={footerStyle}>
-        ORCHARD ©{new Date().getFullYear()} Created by Dương Xuân Khánh
+        DK ©{new Date().getFullYear()} Created by Dương Xuân Khánh
       </Footer>
     </Layout>
   );

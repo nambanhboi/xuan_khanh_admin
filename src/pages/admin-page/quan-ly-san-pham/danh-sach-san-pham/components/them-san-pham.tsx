@@ -32,13 +32,13 @@ type tuyChonPhanLoaiProps = {
   tuy_chon_phan_loai?: any;
 };
 type phanLoaiProps = {
-  ten_phan_loai?: "mau-sac" | "size";
+  ten_phan_loai?: "dung-tich" | "loai-nuoc-hoa";
   phan_loai?: tuyChonPhanLoaiProps[];
 };
 
 interface DataSourceItem {
-  mau_sac?: any;
-  kich_thuoc?: any;
+  dung_tich?: any;
+  loai_nuoc_hoa?: any;
   gia?: number;
   khuyen_mai?:number;
   so_luong?: number;
@@ -229,7 +229,7 @@ const ThemSanPham: React.FC = () => {
   const [dataSource, setDataSource] = useState<DataSourceItem[]>([]);
   const [phan_loai, set_phan_loai] = useState<phanLoaiProps[]>([
     {
-      ten_phan_loai: "mau-sac",
+      ten_phan_loai: "dung-tich",
       phan_loai: [
         {
           key: 1,
@@ -239,18 +239,19 @@ const ThemSanPham: React.FC = () => {
     },
   ]);
 
+  
   const columns = [
     ...phan_loai.map((item: any) => ({
-      title: item.ten_phan_loai === "mau-sac" ? "Màu sắc" : "Kích thước",
-      dataIndex: item.ten_phan_loai,
-      key: item.ten_phan_loai,
+      title: item.ten_phan_loai === "dung-tich" ? "Dung tích" : "Loại nước hoa",
+      dataIndex: item.ten_phan_loai === "dung-tich" ? "dung_tich" : "loai_nuoc_hoa",
+      key: item.ten_phan_loai === "dung-tich" ? "dung_tich" : "loai_nuoc_hoa",
       width: 250,
       render: (text: any, record: any, index: any) => ({
         children: text,
         props: {
           rowSpan:
-            item.ten_phan_loai === "mau-sac"
-              ? getRowSpan(dataSource, index, "mau-sac")
+            item.ten_phan_loai === "dung-tich"
+              ? getRowSpan(dataSource, index, "dung_tich")
               : null,
         },
       }),
@@ -339,7 +340,6 @@ const ThemSanPham: React.FC = () => {
     },
   ];
 
-  // Hàm tính rowSpan cho cột "màu sắc"
   const getRowSpan = (data: any, index: any, field: any) => {
     if (index === 0 || data[index - 1][field] !== data[index][field]) {
       const count = data.filter(
@@ -361,22 +361,22 @@ const ThemSanPham: React.FC = () => {
         "warning",
         "Thông báo",
         `Phân loại "${
-          phan_loai[1].ten_phan_loai === "mau-sac" ? "Màu sắc" : "Kích thước"
+          phan_loai[1].ten_phan_loai === "dung-tich" ? "Dung tích" : "Loại nước hoa"
         }" đã tồn tại`
       );
       const updatedPhanLoai = [...phan_loai];
       updatedPhanLoai[1].ten_phan_loai =
-        updatedPhanLoai[0].ten_phan_loai === "mau-sac" ? "size" : "mau-sac";
+        updatedPhanLoai[0].ten_phan_loai === "dung-tich" ? "loai-nuoc-hoa" : "dung-tich";
       set_phan_loai(updatedPhanLoai);
     }
 
     var arr: DataSourceItem[] = [];
 
     const mauSac =
-      phan_loai.find((item: any) => item.ten_phan_loai === "mau-sac")
+      phan_loai.find((item: any) => item.ten_phan_loai === "dung-tich")
         ?.phan_loai || [];
     const kichThuoc =
-      phan_loai.find((item: any) => item.ten_phan_loai === "size")?.phan_loai ||
+      phan_loai.find((item: any) => item.ten_phan_loai === "loai-nuoc-hoa")?.phan_loai ||
       [];
 
     mauSac.forEach((mau: any) => {
@@ -384,8 +384,8 @@ const ThemSanPham: React.FC = () => {
         kichThuoc.forEach((size: any) => {
           arr.push({
             key: `${Math.random()}`,
-            "mau-sac": mau.tuy_chon_phan_loai,
-            size: size.tuy_chon_phan_loai,
+            "dung_tich": mau.tuy_chon_phan_loai,
+            "loai_nuoc_hoa": size.tuy_chon_phan_loai,
             gia: undefined,
             khuyen_mai: undefined,
             so_luong: undefined,
@@ -395,7 +395,7 @@ const ThemSanPham: React.FC = () => {
       } else {
         arr.push({
           key: Math.random(),
-          "mau-sac": mau.tuy_chon_phan_loai,
+          "dung_tich": mau.tuy_chon_phan_loai,
           khuyen_mai: undefined,
           gia: undefined,
           so_luong: undefined,
@@ -433,9 +433,9 @@ const ThemSanPham: React.FC = () => {
                         />
                       }
                       title={
-                        item.ten_phan_loai === "mau-sac"
-                          ? "Màu sắc"
-                          : "Kích thước"
+                        item.ten_phan_loai === "dung-tich"
+                          ? "Dung tích"
+                          : "Loại nước hoa"
                       }
                       style={{ margin: "8px 0" }}
                     >
@@ -445,7 +445,7 @@ const ThemSanPham: React.FC = () => {
                         value={item.ten_phan_loai}
                         allOptionLabel=""
                         defaultFirstOption={true}
-                        onChange={(val: "mau-sac" | "size") => {
+                        onChange={(val: "dung-tich" | "loai-nuoc-hoa") => {
                           const updatedPhanLoai = phan_loai.map(
                             (phanLoaiItem) =>
                               phanLoaiItem === item
@@ -456,12 +456,12 @@ const ThemSanPham: React.FC = () => {
                         }}
                         options={[
                           {
-                            label: "Màu sắc",
-                            value: "mau-sac",
+                            label: "Dung tích",
+                            value: "dung-tich",
                           },
                           {
-                            label: "Kích thước",
-                            value: "size",
+                            label: "Loại nước hoa",
+                            value: "loai-nuoc-hoa",
                           },
                         ]}
                       />
@@ -593,7 +593,7 @@ const ThemSanPham: React.FC = () => {
                     set_phan_loai([
                       ...phan_loai,
                       {
-                        ten_phan_loai: "mau-sac",
+                        ten_phan_loai: "dung-tich",
                         phan_loai: [
                           { key: Date.now(), tuy_chon_phan_loai: "" },
                         ],
@@ -653,8 +653,8 @@ const ThemSanPham: React.FC = () => {
               ten_san_pham: tenSanPham,
               mo_ta: moTa,
               xuat_xu: xuatXu,
-              mau_sac: item["mau-sac"],
-              size: item["size"],
+              dung_tich: item["dung_tich"],
+              loai_nuoc_hoa: item["loai_nuoc_hoa"],
               gia: item.gia,
               khuyen_mai: item.khuyen_mai,
               so_luong: item.so_luong,

@@ -17,6 +17,12 @@ const DanhSachSanPham:React.FC<DanhSachSanPhamProps> = ({
     const navigate = useNavigate();
     const columns = [
         {
+          title: "Hình ảnh",
+          dataIndex: "duongDanAnh",
+          key: "duong_dan_anh_bia",
+          render: (item: any) => <>{item}</>,
+        },
+        {
           title: "Mã sản phẩm",
           dataIndex: "ma_san_pham",
           key: "ma_san_pham",

@@ -16,6 +16,8 @@ import {
   DeleteOutlined,
   WarningOutlined,
   EyeOutlined,
+  PlusOutlined,
+  FileExcelOutlined,
 } from "@ant-design/icons";
 import { jwtDecode } from "jwt-decode";
 import React, { useEffect, useState } from "react";
@@ -514,16 +516,15 @@ const TableCustom: React.FC<TableCustomProps> = ({
       )}
 
       <Space className="operation-button">
-        {
-          operationButtonCustom ? (
-            <div onClick={()=> HandleOperationButton?.(selectedRowKeys)}>
-              {operationButtonCustom}
-            </div>
-          ) : null
-        }
+        {operationButtonCustom ? (
+          <div onClick={() => HandleOperationButton?.(selectedRowKeys)}>
+            {operationButtonCustom}
+          </div>
+        ) : null}
         {add_button ? (
           <ButtonCustom
             text="Thêm mới"
+            icon={<PlusOutlined />}
             onClick={
               handleOpenModalAddCustom
                 ? handleOpenModalAddCustom
@@ -534,6 +535,7 @@ const TableCustom: React.FC<TableCustomProps> = ({
         {export_button ? (
           <ButtonCustom
             text="Xuất excel"
+            icon={<FileExcelOutlined />}
             variant="outlined"
             onClick={handelExportExcel}
           />
@@ -541,6 +543,7 @@ const TableCustom: React.FC<TableCustomProps> = ({
         {delete_button ? (
           <ButtonCustom
             text="Xóa"
+            icon={<DeleteOutlined />}
             variant="outlined"
             className="btn-custom-delete"
             onClick={handleDeleteAnyConfirm}

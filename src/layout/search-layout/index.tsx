@@ -31,9 +31,11 @@ const SearchLayout: React.FC<{
     <Collapse
       className="search-layout"
       items={itemsCollapse}
+      collapsible="disabled"
+      defaultActiveKey={["1"]}
       style={style}
       expandIcon={({ isActive }) => (
-        <CaretRightOutlined rotate={isActive ? 90 : 0} />
+        <></>
       )}
     />
   );
