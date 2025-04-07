@@ -1,10 +1,10 @@
+
 import {
   Form,
   Input,
   Button,
   Typography,
   Card,
-  notification,
   Spin,
 } from "antd";
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
@@ -16,9 +16,11 @@ import ShowToast from "../../../components/show-toast/ShowToast";
 import { jwtDecode, JwtPayload } from "jwt-decode";
 
 const { Title, Text } = Typography;
+
 interface CustomJwtPayload extends JwtPayload {
-  dvvc_id?: string; // hoặc number nếu `dvvc_id` là số
+  dvvc_id?: string;
 }
+
 const AdminLogin = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState<boolean>(false);
@@ -33,94 +35,59 @@ const AdminLogin = () => {
     await loginAdmin(body)
       .then((res: any) => {
         localStorage.setItem("auth", JSON.stringify(res.data));
-        var dataUser = jwtDecode<CustomJwtPayload>(res.data.token)
-        if(dataUser.dvvc_id === null || dataUser.dvvc_id === ''){
+        const dataUser = jwtDecode<CustomJwtPayload>(res.data.token);
+        if (!dataUser.dvvc_id) {
           navigate("/seller-center/dashboard");
-          ShowToast(
-            "success",
-            "Đăng nhập thành công",
-            "Chào mừng bạn đến với DK Seller Center"
-          );
-        }else{
+        } else {
           navigate("/van-chuyen/don-hang");
-          ShowToast(
-            "success",
-            "Đăng nhập thành công",
-            "Chào mừng bạn đến với DK Seller Center"
-          );
         }
+        ShowToast("success", "Đăng nhập thành công", "Chào mừng bạn đến với DK Seller Center");
       })
-      .catch((err: any) => {
-        ShowToast(
-          "error",
-          "Đăng nhập thất bại",
-          "Tài khoản hoặc mật khẩu không đúng"
-        );
+      .catch(() => {
+        ShowToast("error", "Đăng nhập thất bại", "Tài khoản hoặc mật khẩu không đúng");
       })
-      .finally(() => {
-        setLoading(false);
-      });
+      .finally(() => setLoading(false));
   };
 
   return (
     <Spin spinning={loading}>
       <div className="admin-login-container">
-        <Card className="login-card">
-          <div className="login-title">
-            <img
-              src="/images/logo.jpg"
-              alt="DK Logo"
-              style={{ width: "50%" }}
-            />
-            <Title level={3}>DK Seller Center</Title>
-          </div>
-
-          <Form
-            name="login"
-            onFinish={onFinish}
-            layout="vertical"
-            className="login-form"
-          >
-            <Form.Item
-              name="tai_khoan"
-              rules={[{ required: true, message: "Vui lòng nhập tài khoản" }]}
-            >
-              <Input
-                prefix={<UserOutlined />}
-                placeholder="Email"
-                size="large"
-              />
-            </Form.Item>
-
-            <Form.Item
-              name="mat_khau"
-              rules={[{ required: true, message: "Vui lòng nhập mật khẩu" }]}
-            >
-              <Input.Password
-                prefix={<LockOutlined />}
-                placeholder="Password"
-                size="large"
-              />
-            </Form.Item>
-
-            <Form.Item>
-              <Button
-                type="primary"
-                htmlType="submit"
-                className="login-button"
-                size="large"
-              >
-                LOGIN
-              </Button>
-            </Form.Item>
-
-            <div className="login-links">
-              <Text>
-                <a href="#">Quên mật khẩu?</a>
-              </Text>
+        <div className="admin-login-wrapper">
+          <Card className="login-card">
+            <div className="login-title">
+              <img src="/images/logo.jpg" alt="DK Logo" />
+              <Title level={3}>DK Seller Center</Title>
             </div>
-          </Form>
-        </Card>
+
+            <Form name="login" onFinish={onFinish} layout="vertical" className="login-form">
+              <Form.Item
+                name="tai_khoan"
+                rules={[{ required: true, message: "Vui lòng nhập tài khoản" }]}
+              >
+                <Input prefix={<UserOutlined />} placeholder="Email" size="large" />
+              </Form.Item>
+
+              <Form.Item
+                name="mat_khau"
+                rules={[{ required: true, message: "Vui lòng nhập mật khẩu" }]}
+              >
+                <Input.Password prefix={<LockOutlined />} placeholder="Password" size="large" />
+              </Form.Item>
+
+              <Form.Item>
+                <Button type="primary" htmlType="submit" className="login-button" size="large">
+                  ĐĂNG NHẬP
+                </Button>
+              </Form.Item>
+
+              <div className="login-links">
+                <Text>
+                  <a href="#">Quên mật khẩu?</a>
+                </Text>
+              </div>
+            </Form>
+          </Card>
+        </div>
       </div>
     </Spin>
   );

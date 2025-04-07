@@ -149,53 +149,83 @@ const RevenueStats: React.FC = () => {
     
 
     return (
-        <MainLayout label="Doanh thu">
-            <div style={{ padding: '20px' }}>
-                <h2>Thống kê doanh thu</h2>
+        <MainLayout label="📈 Thống kê doanh thu">
+            <div style={{ padding: 24, background: '#f9f9f9', minHeight: '100vh' }}>
                 <Row gutter={[16, 16]}>
                     <Col span={24}>
-                        <DatePickerCustomOld
-                            mode='range'
-                            value={dateRange}
-                            format="DD/MM/YYYY"
-                            style={{ marginBottom: '20px' }}
-                            onChange={onDateRangeChange}
-                        />
-                    </Col>
-                    <Col span={8}>
-                        <Card>
-                            <Statistic
-                                title="Tổng doanh thu"
-                                value={stats?.totalRevenue || 0}
-                                precision={0}
-                                suffix="VND"
-                                valueStyle={{ color: '#3f8600' }}
+                        <Card style={{ borderRadius: 10 }}>
+                            <h2 style={{ marginBottom: 16 }}>🔎 Chọn khoảng thời gian</h2>
+                            <DatePickerCustomOld
+                                mode="range"
+                                value={dateRange}
+                                format="DD/MM/YYYY"
+                                onChange={onDateRangeChange}
+                                style={{ width: '100%' }}
                             />
                         </Card>
                     </Col>
-                    <Col span={16}>
-                        <Tabs defaultActiveKey="1">
-                            <Tabs.TabPane tab="Theo ngày" key="1">
-                                <Card title="Doanh thu theo ngày">
-                                    <Line data={lineChartDataByDate} options={{ responsive: true }} />
-                                </Card>
-                            </Tabs.TabPane>
-                            <Tabs.TabPane tab="Theo tháng" key="2">
-                                <Card title="Doanh thu theo tháng">
-                                    <Line data={lineChartDataByMonth} options={{ responsive: true }} />
-                                </Card>
-                            </Tabs.TabPane>
-                            <Tabs.TabPane tab="Theo đơn hàng" key="3">
-                                <Card title="Doanh thu theo đơn hàng">
-                                    <Bar data={barChartDataByOrder} options={{ responsive: true }} />
-                                </Card>
-                            </Tabs.TabPane>
-                            <Tabs.TabPane tab="Theo sản phẩm" key="4">
-                                <Card title="Doanh thu theo sản phẩm">
-                                    <Pie data={pieChartDataByProduct} options={{ responsive: true }} />
-                                </Card>
-                            </Tabs.TabPane>
-                        </Tabs>
+
+                    <Col span={24}>
+                        <Tabs
+                            defaultActiveKey="overview"
+                            tabPosition="top"
+                            type="card"
+                            items={[
+                                {
+                                    key: 'overview',
+                                    label: '📊 Tổng quan',
+                                    children: (
+                                        <Card
+                                            title="Tổng doanh thu"
+                                            style={{ borderRadius: 10 }}
+                                            bordered={false}
+                                        >
+                                            <Statistic
+                                                value={stats?.totalRevenue || 0}
+                                                suffix="VND"
+                                                valueStyle={{ color: '#3f8600', fontWeight: 'bold' }}
+                                            />
+                                        </Card>
+                                    )
+                                },
+                                {
+                                    key: 'byDay',
+                                    label: '📅 Theo ngày',
+                                    children: (
+                                        <Card title="Biểu đồ doanh thu theo ngày" bordered={false}>
+                                            <Line data={lineChartDataByDate} />
+                                        </Card>
+                                    )
+                                },
+                                {
+                                    key: 'byMonth',
+                                    label: '📆 Theo tháng',
+                                    children: (
+                                        <Card title="Biểu đồ doanh thu theo tháng" bordered={false}>
+                                            <Line data={lineChartDataByMonth} />
+                                        </Card>
+                                    )
+                                },
+                                {
+                                    key: 'byOrder',
+                                    label: '📦 Theo đơn hàng',
+                                    children: (
+                                        <Card title="Biểu đồ doanh thu theo đơn hàng" bordered={false}>
+                                            <Bar data={barChartDataByOrder} />
+                                        </Card>
+                                    )
+                                },
+                                {
+                                    key: 'byProduct',
+                                    label: '🛍️ Theo sản phẩm',
+                                    children: (
+                                        <Card title="Biểu đồ doanh thu theo sản phẩm" bordered={false}>
+                                            <Pie data={pieChartDataByProduct} />
+                                        </Card>
+                                    )
+                                }
+                            ]}
+                        />
                     </Col>
                 </Row>
             </div>
