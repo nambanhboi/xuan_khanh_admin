@@ -42,23 +42,23 @@ export const menuItem :MenuProps["items"] = [
           key: "danh-sach-san-pham",
           label: "Danh sách sản phẩm",
         },
-      ],
-    },
-    {
-      key: "van-hanh",
-      icon: React.createElement(ControlOutlined), 
-      label: "Vận hành",
-      children: [
-        {
-          key: "nhap-kho",
-          label: "Nhập kho",
-        },
         {
           key: "don-hang",
           label: "Đơn hàng",
         },
       ],
     },
+    // {
+    //   key: "van-hanh",
+    //   icon: React.createElement(ControlOutlined), 
+    //   label: "Vận hành",
+    //   children: [
+    //     {
+    //       key: "nhap-kho",
+    //       label: "Nhập kho",
+    //     },
+    //   ],
+    // },
     {
       key: "marketing",
       icon: React.createElement(NotificationOutlined), 
@@ -68,21 +68,21 @@ export const menuItem :MenuProps["items"] = [
           key: "ma-giam-gia",
           label: "Quản lý mã giảm giá",
         },
-        {
-          key: "chuong-trinh-marketing",
-          label: "Chương trình marketing",
-        },
-        {
-          key: "quang-cao",
-          label: "Quảng cáo",
-        },
+        // {
+        //   key: "chuong-trinh-marketing",
+        //   label: "Chương trình marketing",
+        // },
+        // {
+        //   key: "quang-cao",
+        //   label: "Quảng cáo",
+        // },
       ],
     },
-    {
-      key: "don-vi-van-chuyen",
-      icon: React.createElement(CarOutlined), 
-      label: "Đơn vị vận chuyển",
-    },
+    // {
+    //   key: "don-vi-van-chuyen",
+    //   icon: React.createElement(CarOutlined), 
+    //   label: "Đơn vị vận chuyển",
+    // },
     {
       key: "tai-chinh",
       icon: React.createElement(DollarOutlined), 
@@ -114,16 +114,16 @@ export const menuItem :MenuProps["items"] = [
     // },
   ];
 
-export const menuItemVC :MenuProps["items"] = [
-  {
-    key: "shipper-vc",
-    icon: React.createElement(ControlOutlined), 
-    label: "Đơn hàng",
-    children: [
-      {
-        key: "don-hang-vc",
-        label: "Đơn hàng",
-      },
-    ],
-  },
-]
+// export const menuItemVC :MenuProps["items"] = [
+//   {
+//     key: "shipper-vc",
+//     icon: React.createElement(ControlOutlined), 
+//     label: "Đơn hàng",
+//     children: [
+//       {
+//         key: "don-hang-vc",
+//         label: "Đơn hàng",
+//       },
+//     ],
+//   },
+// ]

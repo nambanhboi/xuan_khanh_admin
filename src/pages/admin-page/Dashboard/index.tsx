@@ -47,7 +47,7 @@ const Dashboard = () => {
 
     return (
         <MainLayout label="Dashboard">
-            <h2>Tổng quan</h2>
+            {/* <h2>Tổng quan</h2> */}
             <Row gutter={[16, 16]}>
                 <Col span={24}>
                     <DatePickerCustomOld mode="range" value={dateRange} onChange={onDateRangeChange} />

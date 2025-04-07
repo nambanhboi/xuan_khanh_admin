@@ -4,7 +4,7 @@ import "../global.scss";
 
 import React, { useEffect, useState } from "react";
 import { Layout, Menu, MenuProps } from "antd";
-import { menuItem, menuItemVC } from "../config";
+import { menuItem } from "../config";
 import HeaderLayout from "./Header";
 import ProtectedRoute from "../routes/PrivateRoute";
 import { routesConfig } from "../routes/routes";
@@ -19,12 +19,12 @@ const siderStyle: React.CSSProperties = {
   color: "#fff",
   minWidth: "12%",
   minHeight: "85vh",
-  backgroundColor: "var(--color-primary-1) !important"
+  backgroundColor: "var(--color-btn-primary-text) !important"
 };
 
 const contentStyle: React.CSSProperties = {
   minHeight: 120,
-  lineHeight: "120px",
+  // lineHeight: "120px",
   color: "#fff",
   padding: 24,
 };
@@ -127,7 +127,7 @@ const MainLayout: React.FC<{children?: React.ReactNode, label?:string }> = ({
           <Menu
             theme="light"
             mode="inline"
-            style={{ backgroundColor: "var(--color-primary-1) !important" }} // Match Sider background
+            style={{ backgroundColor: "white !important" }} // Match Sider background
             defaultSelectedKeys={["1"]}
             items={menuItem}
             onClick={handleChangeMenu}

@@ -68,7 +68,7 @@ const AdminLogin = () => {
         <Card className="login-card">
           <div className="login-title">
             <img
-              src="/images/logo2.png"
+              src="/images/logo.jpg"
               alt="G-connect Logo"
               style={{ width: "50%" }}
             />

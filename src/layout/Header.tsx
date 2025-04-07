@@ -40,22 +40,22 @@ const HeaderLayout = () => {
   return (
     <Header
       className="header-layout"
-      style={{ padding: 0, background: "var(--color-primary-1)" }}
+      style={{ padding: 0, background: "white" }}
     >
-      <div className="left-header">
+      <div className="left-header" style={{ height:"100%" }}>
         <img
-          src="/images/logo2.png"
+          src="/images/logo.jpg"
           alt="G-connect Logo"
-          style={{ width: "12%" }}
+          style={{ height:"60%", marginTop:"10%", marginLeft:"30px" }}
         />
       </div>
 
       <div className="right-header">
-        <div className="thong-bao">
+        {/* <div className="thong-bao">
           <Badge count={5}>
             <Avatar shape="square" icon={<UserOutlined />} />
           </Badge>
-        </div>
+        </div> */}
         <div className="nguoi-dung-avt">
           <Dropdown
             menu={{ items: itemsMenu, onClick: handleMenuClick }}
