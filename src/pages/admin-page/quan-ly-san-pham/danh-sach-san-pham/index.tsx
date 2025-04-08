@@ -1,4 +1,4 @@
-import { Col, Form, Row } from "antd";
+import { Col, Form, Image, Row } from "antd";
 import TableCustom from "../../../../components/table/table-custom";
 import { formatDate } from "../../../../config/common";
 import MainLayout from "../../../../layout/MainLayout";
@@ -6,6 +6,7 @@ import FormItemInput from "../../../../components/form-input/FormInput";
 import DatePickerCustomOld from "../../../../components/datepicker/DatePickerCustomOld";
 import { useNavigate } from "react-router-dom";
 import { routesConfig } from "../../../../routes/routes";
+import { BASE_URL } from "../../../../config/configApi";
 
 type DanhSachSanPhamProps = {
 
@@ -19,8 +20,8 @@ const DanhSachSanPham:React.FC<DanhSachSanPhamProps> = ({
         {
           title: "Hình ảnh",
           dataIndex: "duongDanAnh",
-          key: "duong_dan_anh_bia",
-          render: (item: any) => <>{item}</>,
+          key: "duongDanAnh",
+          render: (item: any) => <><Image src={`${BASE_URL}/${item}`} preview={false} width={60}/></>,
         },
         {
           title: "Mã sản phẩm",

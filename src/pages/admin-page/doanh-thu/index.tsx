@@ -151,7 +151,7 @@ const RevenueStats: React.FC = () => {
     return (
         <MainLayout label="Doanh thu">
             <div style={{ padding: '20px' }}>
-                <h2>Thống kê doanh thu</h2>
+                <h2 style={{ color:"var(--color-primary-9)"}}>Thống kê doanh thu</h2>
                 <Row gutter={[16, 16]}>
                     <Col span={24}>
                         <DatePickerCustomOld

@@ -1,4 +1,27 @@
 .table-custom {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    .table-custom-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .table-custom-toolbar {
+        display: flex;
+        gap: 8px;
+    }
+
+    .table-custom-body {
+        flex-grow: 1;
+    }
+
+    .table-custom-footer {
+        display: flex;
+        justify-content: flex-end;
+    }
 
     .table-custom-style {
         background-color: #fff;
@@ -63,7 +86,6 @@
         margin-bottom: 8px;
         float: inline-end;
     }
-    
 }
 
 .modal-footer-custom {

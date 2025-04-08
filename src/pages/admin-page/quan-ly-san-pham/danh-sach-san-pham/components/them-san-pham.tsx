@@ -616,6 +616,7 @@ const ThemSanPham: React.FC = () => {
                 columns={columns}
                 dataSource={dataSource}
                 pagination={false}
+                scroll={{ x: 'max-content' }}
               />
             </Col>
           </Row>
